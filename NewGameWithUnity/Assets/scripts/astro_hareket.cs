@@ -4,19 +4,22 @@ using UnityEngine; //unity ile haberleþebilmek için gerekli olan fonksiyonlarýn 
 using UnityEngine.SceneManagement;
 public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda sizin eklediðiniz her bir c# dosyasý arkada hazýr bir c# dosyasýndan türetülüp buraya konuluyor
 {
+    public GameObject canbar;
+    public float benzin;
+    public static float astronot_genel_hiz = 1f;
     public float yatay=1000;
     protected Joystick joystick;
     protected Joybutton joybutton;
     static Renderer rend;
     public bool isDead = false;
     public static int coins;
-    public static float hiz_katsayisi; //kofti
+    public static float hiz_katsayisi = 0.3f; //kofti
     public float gravity_scale = 2f;
     public static Rigidbody2D rb_astro; //Astronotumun üzerinde bir rigitbody var evet fakat ben ona oyun içersinden kod içersinden nasýl müdehale edeceðim rigit body cinsinden bir referans sayesinde 
     public SpriteRenderer sprite;
     int kontrol = 0; //false 
     public float kuvvet_katsayisi_uydunun = 5f;
-    public static float astro_hiz=1;
+    public static float astro_hiz=astronot_genel_hiz;
     
 
     public static float speed=1f; //hýzý buradan ayarlayabilirsiniz.
@@ -34,22 +37,23 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
     void Update()// Oyun baþlatýldýktan sonraki aþamalarda her bir oyun karesini oluþturulmasý için her seferinde bu update fonksiyonu çalýþtýrýlýr frame baþlarken çalýþtýrýlýr
     {
         rb_astro = GetComponent<Rigidbody2D>();
-       /* speed = rb.velocity.magnitude; */ //anlýk olarak hýz almak için
+        /* speed = rb.velocity.magnitude; */ //anlýk olarak hýz almak için
+        benzin = 100;
     }
 
     private void FixedUpdate()
     {
         
-        hiz_katsayisi = 0.3f;
+        /*hiz_katsayisi = 0.3f;*/
         float yatay = Input.GetAxis("Horizontal"); //Yatay diye bir deðiþken oluþturduk buna da Input'dan gelen horizontali atadýk amaç ekranda sað sol tuþlarýna basarak bir karakteri harket ettirmek 
                                                    //Yatayda olan hareketlerimizi tanýmlamak için input managerden alan girdileri alacaðýmýz bir komut ýnput manager'de name kýsmýnda yazan Horizontal'ý kullandýk
         float dikey = Input.GetAxis("Vertical");
 
 
 
-        Input.GetAxis("Horizontal"); // Bunu if ile kullanarak -1'e ve +1'e eþit olduðu durumlar için butonlar olusturabilir hýzlanmayan astronotu hýzlandýrabilirsin video kaydettin dinle unuttuysan
+       /* Input.GetAxis("Horizontal"); // Bunu if ile kullanarak -1'e ve +1'e eþit olduðu durumlar için butonlar olusturabilir hýzlanmayan astronotu hýzlandýrabilirsin video kaydettin dinle unuttuysan */
 
-        if (joystick.Horizontal > 0)
+       /* if (joystick.Horizontal > 0)
         {
             transform.localScale = new Vector3(1.5f, 1.5f, 1);
             transform.position += new Vector3(astro_hiz * hiz_katsayisi, 0, 0); //x ekseninde hýzlanma
@@ -58,7 +62,7 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         {
             transform.localScale = new Vector3(-1.5f, 1.5f, 1);
             transform.position += new Vector3(-astro_hiz * hiz_katsayisi, 0, 0); //x ekseninde hýzlanma
-        }
+        } */
 
         /*if(dikey>0)
         {
@@ -112,6 +116,7 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         
         if(collision.tag == "coins")
         {
+            canbar.transform.localScale = new Vector3(0.5f, 1, 1);
             coins++;
             Debug.Log("Coin toplandi !!! ");
             Destroy(collision.gameObject); // Tepkimeye giren gameObject'e eriþip yok ediyoruz  
@@ -121,7 +126,7 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         if(collision.tag == "ufo" && kontrol == 0)
         {
             gameObject.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; //statik olan öðeyi Dynamic yapar 
-            rb_astro.gravityScale = -1f;
+            rb_astro.gravityScale = -1f; 
             kontrol = 1;
         }
         
@@ -133,9 +138,9 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         if (collision.tag == "uydu" && kontrol == 0)
         {
             gameObject.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; //statik olan öðeyi Dynamic yapar 
-            rb_astro.gravityScale = -1f;
+             /* rb_astro.gravityScale = -1f; */
             kontrol = 1;
-        }
+        } 
 
         else if (collision.tag == "uydu" && kontrol == 1)
         {
@@ -146,7 +151,7 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         if(collision.tag == "uydunun_platformu" )
         {
             rb_astro.gravityScale = gravity_scale; //normal gravity scale'si 
-        }
+        }  
 
         if (collision.tag == "background")
         {
@@ -164,7 +169,7 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         {
             Debug.Log("Burasi calisti");
             transform.position = new Vector3(transform.position.x, transform.position.y, 5);
-            sprite.sortingOrder = -1; //order'in layer deðiþti 
+            sprite.sortingOrder = -5; //order'in layer deðiþti 
 
         }
 

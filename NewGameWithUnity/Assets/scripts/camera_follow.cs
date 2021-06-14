@@ -6,14 +6,15 @@ using UnityEngine.SceneManagement;
 public class camera_follow : MonoBehaviour
 {
     public GameObject targetObject;
-    public Vector3 camera_payi;
+    
     public float kuvvet_katsayisi = 0.1f;
-    public float Speed_karsila = astro_hareket.speed;
+   /* public float Speed_karsila = astro_hareket.speed; */
     public float speed2;
-    public static float hiz = 400f; //kamera hýzý burasý 500f ideal
+    public static float hiz = 0; //kamera hýzý burasý 500f ideal
     public static Transform transform_camera;
 
     public float zaman;
+    public float zaman2;
 
     public static int sayac;
 
@@ -43,7 +44,7 @@ public class camera_follow : MonoBehaviour
 
         }
 
-        astro_hareket.rb_astro.gravityScale = 1f;
+        astro_hareket.rb_astro.gravityScale = astro_hareket.astronot_genel_hiz;
 
     }
 
@@ -59,8 +60,9 @@ public class camera_follow : MonoBehaviour
     {
         camera_rigit = GetComponent<Rigidbody2D>(); //yukarýda tanýmladýðýmýz nesnenin ve 'rb' referans deðerinin nereyi referans alacaðýný burada belirttik 
         sayac = 0;
-        astro_hareket.speed = 1.2f;
         hiz = 400f;
+        hap_ters.hap_yutma = 0;
+        astro_hareket.astro_hiz = 1f; 
         
 
     }
@@ -70,21 +72,28 @@ public class camera_follow : MonoBehaviour
 
     private void FixedUpdate()
     {
+        zaman += Time.deltaTime;
         if (hap_ters.hap_yutma == 1) //yani true' ise 
         {
+            zaman2 += Time.deltaTime;
             transform.rotation = Quaternion.Euler(0, 0, 180); //opsiyon 1
             
-           /* transform.localScale = new Vector3(1, -1, 1); */
+            if (zaman2 > 3)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+            }
+            /* transform.localScale = new Vector3(1, -1, 1); */
         }
-        zaman += Time.deltaTime;
-        if (zaman > 6 && sayac == 0)
+        
+        
+        if (zaman > 10 && sayac == 0)
         {
             sayac++;
-            astro_hareket.astro_hiz *=1.1f; //buradan kamera hýzý il birlikte astronot hýzýnýda artýrmýþ olduk 
-            hiz *= 1.450f;
+            astro_hareket.astro_hiz *= 1.2f; //buradan kamera hýzý il birlikte astronot hýzýnýda artýrmýþ olduk 
+            hiz *= 1.250f;
             camera_rigit.velocity = transform.right * hiz * Time.deltaTime;
             Debug.Log("Hizlan !!!");
-          /*  astro_hareket.rb_astro.gravityScale = 1.25f; */
+            /*  astro_hareket.rb_astro.gravityScale = 1.25f; */
         }
         if (zaman > 15 && sayac == 1)
         {
@@ -99,7 +108,7 @@ public class camera_follow : MonoBehaviour
         if (zaman > 20 && sayac == 2)
         {
             sayac++;
-            astro_hareket.astro_hiz *= 1.2f;
+            astro_hareket.astro_hiz *= 1.1f;
             hiz *= 1.250f;
             camera_rigit.velocity = transform.right * hiz * Time.deltaTime;
             Debug.Log("Hizlan !!!");
@@ -108,31 +117,37 @@ public class camera_follow : MonoBehaviour
         if (zaman > 25 && sayac == 3)
         {
             sayac++;
-            astro_hareket.astro_hiz *= 1.2f;
-            hiz *= 1.300f;
+            astro_hareket.astro_hiz *= 1.1f;
+            hiz *= 1.200f;
             camera_rigit.velocity = transform.right * hiz * Time.deltaTime;
             Debug.Log("Hizlan !!!");
-           /* astro_hareket.rb_astro.gravityScale = 3.5f; //hýzlandýðý için fazla yükseliyor buna önlem olarak geliþtirildi*/
+            /* astro_hareket.rb_astro.gravityScale = 3.5f; //hýzlandýðý için fazla yükseliyor buna önlem olarak geliþtirildi*/
         }
         if (zaman > 30 && sayac == 4)
-        {
+        { //30.sn'de tuhaf bir itme oluyor 
             sayac++;
-            astro_hareket.astro_hiz *= 1.3f;
-            hiz *= 1.300f;
+            astro_hareket.astro_hiz *= 1.1f;
+            hiz *= 1.200f;
             camera_rigit.velocity = transform.right * hiz * Time.deltaTime;
             Debug.Log("Hizlan !!!");
-           /* astro_hareket.rb_astro.gravityScale = 4.2f; //hýzlandýðý için fazla yükseliyor buna önlem olarak geliþtirildi */
+            /* astro_hareket.rb_astro.gravityScale = 4.2f; //hýzlandýðý için fazla yükseliyor buna önlem olarak geliþtirildi */
         }
         if (zaman > 40 && sayac == 5)
         {
             sayac++;
-            astro_hareket.astro_hiz *= 1.3f; //buradan kamera hýzý il birlikte astronot hýzýnýda artýrmýþ olduk 
+            astro_hareket.astro_hiz *= 1.2f; //buradan kamera hýzý il birlikte astronot hýzýnýda artýrmýþ olduk 
             hiz *= 1.5f;
             camera_rigit.velocity = transform.right * hiz * Time.deltaTime;
             Debug.Log("Hizlan !!!");
             /* astro_hareket.rb_astro.gravityScale = 4.2f; //hýzlandýðý için fazla yükseliyor buna önlem olarak geliþtirildi */
         }
-        camera_rigit.velocity = transform.right * hiz * Time.deltaTime;
+        camera_rigit.velocity = transform.right * hiz * Time.deltaTime; //problemin sebebi burasý
+
+
+    }
+    private void Update()
+    {
+        
     }
     void LateUpdate()//Update fonksiyonu çalýþtýktan hemen sonra çalýþýyor 
     {

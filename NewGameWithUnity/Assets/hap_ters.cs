@@ -5,6 +5,8 @@ using UnityEngine;
 public class hap_ters : MonoBehaviour 
 {
     public static int hap_yutma = 0; //false
+
+    
     
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,10 @@ public class hap_ters : MonoBehaviour
 
             Destroy(this.gameObject);
             hap_yutma = 1; //true
+
+            
+
+            
 
 
 
