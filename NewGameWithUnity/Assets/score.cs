@@ -16,11 +16,11 @@ public class score : MonoBehaviour
     void Update()
     {
         s.text = "Score:" + (astro_hareket.coins-6);
-        if ((astro_hareket.coins) % 5 == 0)
+        /*if ((astro_hareket.coins) % 5 == 0)
         {
             Debug.Log("oyun hizlaniyor!");
             camera_follow.hiz += 0.1f;
 
-        }
+        } */
     }
 }

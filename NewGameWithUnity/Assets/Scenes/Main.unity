@@ -979,7 +979,6 @@ MonoBehaviour:
   isDead: 0
   hiz_katsayisi: 0
   gravity_scale: 1
-  rb: {fileID: 895273152}
   sprite: {fileID: 0}
   kuvvet_katsayisi_uydunun: 5
 --- !u!61 &895273151
@@ -1088,7 +1087,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 895273148}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -92.2, y: 1.7, z: -7.4}
+  m_LocalPosition: {x: -11, y: 7.3, z: -7.4}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1732,7 +1731,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633172590}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -80.2, y: 30.8, z: 0}
+  m_LocalPosition: {x: -56, y: 31.8, z: 0}
   m_LocalScale: {x: 7.7165003, y: 7.7165003, z: 1.5433}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2110,7 +2109,7 @@ MonoBehaviour:
   xEkseni2: 33
   time: 0.7
   yEkseni: 4
-  fark: 45
+  fark: 38
 --- !u!224 &1845843215 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
