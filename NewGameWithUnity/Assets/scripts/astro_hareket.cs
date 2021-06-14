@@ -16,6 +16,8 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
     public SpriteRenderer sprite;
     int kontrol = 0; //false 
     public float kuvvet_katsayisi_uydunun = 5f;
+    public static float astro_hiz=1;
+    
 
     public static float speed=1f; //hýzý buradan ayarlayabilirsiniz.
     // Start is called before the first frame update
@@ -50,10 +52,12 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         if (joystick.Horizontal > 0)
         {
             transform.localScale = new Vector3(1.5f, 1.5f, 1);
+            transform.position += new Vector3(astro_hiz * hiz_katsayisi, 0, 0); //x ekseninde hýzlanma
         }
         else if (joystick.Horizontal < 0)
         {
             transform.localScale = new Vector3(-1.5f, 1.5f, 1);
+            transform.position += new Vector3(-astro_hiz * hiz_katsayisi, 0, 0); //x ekseninde hýzlanma
         }
 
         /*if(dikey>0)
@@ -76,7 +80,8 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
 
         transform.position += new Vector3(0, speed * hiz_katsayisi, 0); //zýplama
 
-        transform.position += new Vector3(joystick.Horizontal * hiz_katsayisi, 0, 0); //x ekseninde hýzlanma
+        
+       /* transform.position += new Vector3(joystick.Horizontal * hiz_katsayisi, 0, 0); //x ekseninde hýzlanma */
 
 
     }
