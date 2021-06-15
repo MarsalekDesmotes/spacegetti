@@ -20,7 +20,7 @@ public class score : MonoBehaviour
     {
         score_miktar += Time.deltaTime;
         
-        s.text = "Score:" + score_miktar*10;
+        s.text = "Score:" + (score_miktar*10);
         /*if ((astro_hareket.coins) % 5 == 0)
         {
             Debug.Log("oyun hizlaniyor!");

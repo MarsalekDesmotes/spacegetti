@@ -116,11 +116,12 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         
         if(collision.tag == "coins")
         {
-            canbar.transform.localScale = new Vector3(0.5f, 1, 1);
+            
             coins++;
             Debug.Log("Coin toplandi !!! ");
             Destroy(collision.gameObject); // Tepkimeye giren gameObject'e eriþip yok ediyoruz  
             //rend.material.color = Color.black;//
+            canbar.transform.localScale = new Vector3(0.5f, 1, 1);
 
         }
         if(collision.tag == "ufo" && kontrol == 0)
