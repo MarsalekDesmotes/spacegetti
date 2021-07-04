@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class button : MonoBehaviour
 {
     bool sol, sag;
-    // Start is called before the first frame update
+    
     void Start()
     {
         astro_hareket.astro_hiz = astro_hareket.astronot_genel_hiz;
@@ -17,12 +17,12 @@ public class button : MonoBehaviour
     {
         if(sol)
         {
-            transform.localScale = new Vector3(-2f, 2f, 1);
+            transform.localScale = new Vector3(1.084042f, 1.084042f, 1);
             transform.position += new Vector3(-astro_hareket.astro_hiz * astro_hareket.hiz_katsayisi, 0, 0);
         }
         if(sag)
         {
-            transform.localScale = new Vector3(2f, 2f, 1);
+            transform.localScale = new Vector3(1.084042f, 1.084042f, 1);
             transform.position += new Vector3(astro_hareket.astro_hiz * astro_hareket.hiz_katsayisi, 0, 0);
         }
 

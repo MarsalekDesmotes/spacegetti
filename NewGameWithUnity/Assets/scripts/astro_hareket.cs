@@ -26,6 +26,7 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
     // Start is called before the first frame update
     void Start() //guncelleme methodlarýndan herhangi birisi çaðýrýlmadan önce start fonksiyonu çaðýrýlýr oyun baþladýðýnda sadece ve sadece bir kez çalýþacak fonksiyonlarýn yerleþtirildiði yer
     {
+        isDead = false;
         joystick = FindObjectOfType<Joystick>();
         joybutton = FindObjectOfType<Joybutton>();
         // örneðin oyun baþlangýç müziði
@@ -156,7 +157,11 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
 
         if (collision.tag == "background")
         {
+            //burada is dead true yap 
+
+            isDead = true;
             SceneManager.LoadScene("GameOver");
+
 
         }
 
