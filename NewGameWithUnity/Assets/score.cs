@@ -18,9 +18,15 @@ public class score : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        score_miktar += Time.deltaTime;
+        score_miktar += Time.deltaTime*50;
+
+       
+
         
-        s.text = "Score:" + (score_miktar*10);
+
+        s.text = "Score:" + (((int)score_miktar));
+
+
         /*if ((astro_hareket.coins) % 5 == 0)
         {
             Debug.Log("oyun hizlaniyor!");
