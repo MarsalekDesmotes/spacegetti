@@ -132,7 +132,15 @@ public class camera_follow : MonoBehaviour
             Debug.Log("Hizlan !!!");
             /* astro_hareket.rb_astro.gravityScale = 4.2f; //hýzlandýðý için fazla yükseliyor buna önlem olarak geliþtirildi */
         }
-        
+        if (zaman > 40 && sayac == 5)
+        {
+            sayac++;
+            astro_hareket.astro_hiz *= 1.2f; //buradan kamera hýzý il birlikte astronot hýzýnýda artýrmýþ olduk 
+            hiz *= 1.5f;
+            camera_rigit.velocity = transform.right * hiz * Time.deltaTime;
+            Debug.Log("Hizlan !!!");
+            /* astro_hareket.rb_astro.gravityScale = 4.2f; //hýzlandýðý için fazla yükseliyor buna önlem olarak geliþtirildi */
+        }
         camera_rigit.velocity = transform.right * hiz * Time.deltaTime; //problemin sebebi burasý
 
 
