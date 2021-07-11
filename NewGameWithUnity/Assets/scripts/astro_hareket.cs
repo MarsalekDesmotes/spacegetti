@@ -21,6 +21,9 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
     int kontrol = 0; //false 
     public float kuvvet_katsayisi_uydunun = 5f;
     public static float astro_hiz = astronot_genel_hiz;
+    public AudioSource ads;
+    public AudioSource ads_ufo;
+    public AudioSource ads_hap;
 
     public float benzin_miktar;
     
@@ -95,7 +98,7 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
             transform.localScale = new Vector3(1, 1, 1);
         }*/
 
-        Debug.Log(yatay); //Console.WriteLine' a benzer mantýkta bunun unity kütüphanesindeki karþýlýðýda Debug.Log()'dur . Bunun baþka çýktýlar veren çeþitleri de vardýr.
+         //Console.WriteLine' a benzer mantýkta bunun unity kütüphanesindeki karþýlýðýda Debug.Log()'dur . Bunun baþka çýktýlar veren çeþitleri de vardýr.
                           //frameler arasýndaki zaman farkýnýn eþit olmasýný saðlar. Bu kod sayesinde horizontal deðiþkeni unity ekranýnda rahat bir þekilde okuyoruz. Peki bu horizontal deðiþkeni nasýl deðerlendirecez 
 
 
@@ -105,7 +108,7 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         //Deðerler çok hýzlý bir þekilde deðiþtiði için ýþýnlanma olarak adlandýrýlan durumla karþýlaþýyoruz bunu düzenlemek için ise þunu yapmalýyýz. transform.position '+=' new Vector3(yatay, 0, 0);
 
         transform.position += new Vector3(0, speed * hiz_katsayisi, 0); //zýplama
-
+     
         
        /* transform.position += new Vector3(joystick.Horizontal * hiz_katsayisi, 0, 0); //x ekseninde hýzlanma */
 
@@ -131,6 +134,7 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         {
             Debug.Log("denenefsdfasdfsasdasfsdfasdfasdfdasfasdfsdfasfasfdasdfasfsfsf");
             animator.SetBool("yere_indi", true);
+            ads.Play();
         }
         
 
@@ -151,9 +155,9 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         
         if(collision.tag == "coins")
         {
-            
+            ads_hap.Play();
             coins++;
-            benzin_miktar += 0.1f;
+            benzin_miktar += 0.3f;
             Debug.Log("Coin toplandi !!! ");
             Destroy(collision.gameObject); // Tepkimeye giren gameObject'e eriþip yok ediyoruz  
             //rend.material.color = Color.black;//
@@ -162,8 +166,9 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         }
         if(collision.tag == "ufo" && kontrol == 0)
         {
-            gameObject.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; //statik olan öðeyi Dynamic yapar 
-            rb_astro.gravityScale = -1f; 
+          //statik olan öðeyi Dynamic yapar 
+            rb_astro.gravityScale = -1f;
+            ads_ufo.Play();
             kontrol = 1;
         }
         
@@ -175,7 +180,7 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
         if (collision.tag == "uydu" && kontrol == 0)
         {
             gameObject.transform.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; //statik olan öðeyi Dynamic yapar 
-             /* rb_astro.gravityScale = -1f; */
+             rb_astro.gravityScale = -1f; 
             kontrol = 1;
         } 
 
@@ -207,11 +212,12 @@ public class astro_hareket : MonoBehaviour //MonoBehavior'dan türetilmiþ aslýnda
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "ufo")
-        {
+        {  
+           
             Debug.Log("Burasi calisti");
             transform.position = new Vector3(transform.position.x, transform.position.y, 5);
-            sprite.sortingOrder = -5; //order'in layer deðiþti 
-
+            //sprite.sortingOrder = -5; //order'in layer deðiþti 
+          
         }
 
         

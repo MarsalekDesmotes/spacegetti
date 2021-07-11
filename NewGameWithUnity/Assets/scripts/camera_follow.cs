@@ -90,7 +90,7 @@ public class camera_follow : MonoBehaviour
         {
             sayac++;
             astro_hareket.astro_hiz *= 1.2f; //buradan kamera hýzý il birlikte astronot hýzýnýda artýrmýþ olduk 
-            hiz *= 1.250f;
+            hiz *= 1.250f;    
             camera_rigit.velocity = transform.right * hiz * Time.deltaTime; 
             Debug.Log("Hizlan !!!");
             /*  astro_hareket.rb_astro.gravityScale = 1.25f; */
@@ -98,7 +98,7 @@ public class camera_follow : MonoBehaviour
         if (zaman > 15 && sayac == 1)
         {
             sayac++;
-            astro_hareket.astro_hiz *= 1.2f; //buradan kamera hýzý il birlikte astronot hýzýnýda artýrmýþ olduk
+            astro_hareket.astro_hiz *= 1.25f; //buradan kamera hýzý il birlikte astronot hýzýnýda artýrmýþ olduk
 
             hiz *= 1.250f;
             camera_rigit.velocity = transform.right * hiz * Time.deltaTime;
@@ -108,40 +108,17 @@ public class camera_follow : MonoBehaviour
         if (zaman > 20 && sayac == 2)
         {
             sayac++;
-            astro_hareket.astro_hiz *= 1.1f;
-            hiz *= 1.250f;
+            astro_hareket.astro_hiz *= 1.3f;
+            hiz *= 1.1f;
             camera_rigit.velocity = transform.right * hiz * Time.deltaTime;
             Debug.Log("Hizlan !!!");
             /*  astro_hareket.rb_astro.gravityScale = 1.25f; */
         }
-        if (zaman > 25 && sayac == 3)
-        {
-            sayac++;
-            astro_hareket.astro_hiz *= 1.1f;
-            hiz *= 1.200f;
-            camera_rigit.velocity = transform.right * hiz * Time.deltaTime;
-            Debug.Log("Hizlan !!!");
-            /* astro_hareket.rb_astro.gravityScale = 3.5f; //hýzlandýðý için fazla yükseliyor buna önlem olarak geliþtirildi*/
-        }
-        if (zaman > 30 && sayac == 4)
-        { //30.sn'de tuhaf bir itme oluyor 
-            sayac++;
-            astro_hareket.astro_hiz *= 1.1f;
-            hiz *= 1.200f;
-            camera_rigit.velocity = transform.right * hiz * Time.deltaTime;
-            Debug.Log("Hizlan !!!");
-            /* astro_hareket.rb_astro.gravityScale = 4.2f; //hýzlandýðý için fazla yükseliyor buna önlem olarak geliþtirildi */
-        }
-        if (zaman > 40 && sayac == 5)
-        {
-            sayac++;
-            astro_hareket.astro_hiz *= 1.2f; //buradan kamera hýzý il birlikte astronot hýzýnýda artýrmýþ olduk 
-            hiz *= 1.5f;
-            camera_rigit.velocity = transform.right * hiz * Time.deltaTime;
-            Debug.Log("Hizlan !!!");
-            /* astro_hareket.rb_astro.gravityScale = 4.2f; //hýzlandýðý için fazla yükseliyor buna önlem olarak geliþtirildi */
-        }
-        camera_rigit.velocity = transform.right * hiz * Time.deltaTime; //problemin sebebi burasý
+       
+            camera_rigit.velocity = transform.right * hiz * Time.deltaTime; //problemin sebebi burasý 
+
+        
+      
 
 
     }
